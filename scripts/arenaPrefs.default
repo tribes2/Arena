@@ -1,0 +1,236 @@
+$Arena::PrefsLoaded = 1.0;  // Don't mess with this line
+
+
+// A special thanks goes out to all the server admins who have helped
+// make T2 Arena possible. Thanks!
+
+
+// ---------------------------------------------------------------- //
+// Tribes 2 Arena
+// Gametype Preferences
+// 
+// Instructions:
+// 
+//  This file contains preferences made available by Arena for server
+//  admins. You may edit these options to customize your server.
+// 
+//  Each option below has a description and list of possible values
+//  followed by an expression that looks something like this:
+// 
+//    $Arena::Pref::PREFNAME = VALUE;
+// 
+//  Change the value of the expression to one of the provided options.
+//
+//  If you would like to revert to the default options just delete 
+//  this file and a new one will be automatically generated the next
+//  time you run the server.
+//
+
+
+
+////////////////////////////////////////////////////////////////////////
+//                                                                    //
+//                            Warning                                 //
+//                                                                    //
+//  Modifying some of these options may make your server tainted      //
+//  in the eyes of some leagues and ladders. If you are planning on   //
+//  running Arena tournament games on your server please make sure    //
+//  that your changes here are acceptable to that tournament.         //
+//                                                                    //
+//  Or just rename/delete this file before the tournament game and    //
+//  the server will generate a new one with the default settings.     //
+//  You need to restart the server for this to happen.                //
+//                                                                    //
+////////////////////////////////////////////////////////////////////////
+
+
+
+
+// # ---------------------------------------------------------------- //
+// # SECTION ONE - GENERAL ARENA SETTINGS
+
+
+// # Round Limit
+// # The number of rounds a team must win in order to win a mission
+// # ----------------------------------------------------------------
+// # You may specify any integer greater than zero for this option (Default is 7)
+
+// NOTE: There is a seperate option for tournament mode. It defaults to
+//       five which is what most of the ladders seem to want
+
+$Arena::Pref::RoundLimit = 7;
+$Arena::Pref::RoundLimitTourney = 5;
+
+
+// # Round Time Limit
+// # The number of minutes before a round is automatically ended
+// # IMPORTANT: Arena uses this value as a base - it will automatically
+// #            add time to the limit depending on the number of players
+// # ----------------------------------------------------------------
+// # Enter zero for no timelimit or any positive real number to set
+// # the base time limit (Default is 3)
+
+// NOTE: You may edit this option without interfering with tournament
+//       play since tournament mode will automatically override it
+//       transparently whenever it needs to
+
+$Arena::Pref::RoundTimeLimit = 3;
+
+
+// # Station Limit
+// # The number of times a single player may access inventory stations each round
+// # ----------------------------------------------------------------
+// # Enter a negative number to disable the station limit
+// # Enter zero to prevent all station access
+// # Enter an integer greater than zero to set the station limit (Default is 2)
+
+$Arena::Pref::StationLimit = 2;
+
+
+// # Grace Period
+// # The number of seconds into a round where players may still spawn
+// # ----------------------------------------------------------------
+// # Enter zero to disable the grace period
+// # Enter an integer greater than zero to set the grace period (Default is 15)
+
+$Arena::Pref::GracePeriod = 15;
+
+
+// # Countdown Time
+// # Delay time between rounds
+// # ----------------------------------------------------------------
+// # Enter zero to for no countdown
+// # Enter an integer greater than zero to set the countdown time (Default is 12)
+
+// NOTE: You may edit this option without interfering with tournament
+//       play since tournament mode will automatically override it
+//       transparently whenever it needs to
+
+$Arena::Pref::CountdownTime = 12;
+
+
+// # Waypoint Final Player
+// # Control the behavior of the final player waypoint
+// # ----------------------------------------------------------------
+// # Enter zero to completely disable the waypoint
+// # Enter one to enable the waypoint in FFA mode (Default)
+// # Enter two to enable the waypoint in both FFA and Tournament modes
+
+// NOTE: By default there is no waypoint in tournament mode, so you may
+//       turn it off completely (setting 0) without affecting tourney games.
+
+$Arena::Pref::WaypointLastPlayer = 1;
+
+
+// # High Score Tracking
+// # Enable or disable tracking of map high scores
+// # ----------------------------------------------------------------
+// # Enter false to disable
+// # Enter true to enable
+
+// NOTE: This is completely irrelevant to tournament games
+
+$Arena::Pref::TrackHighScores = true;
+
+
+// # Shuffle Teams
+// # Enable or disable team randomization between matches (FFA mode only)
+// # ----------------------------------------------------------------
+// # Enter false to disable
+// # Enter true to enable
+
+// WARNING: If you disable this option players will not be distributed
+//          properly when switching between two and >2 team maps
+//
+//          DO NOT DISABLE THIS OPTION IF YOU ARE GOING TO RUN MAPS
+//          WITH DIFFERENT NUMBERS OF TEAMS - BAD THINGS WILL HAPPEN
+//
+//          However, if you're only running two team maps this option
+//          is perfectly safe to disable.
+
+// NOTE: This is completely irrelevant to tournament games
+
+$Arena::Pref::ShuffleTeams = true;
+
+
+
+
+// # ---------------------------------------------------------------- //
+// # SECTION TWO - GAMEPLAY SETTINGS
+
+
+// # Armor Restriction
+// # Restrict players to lighter armors
+// # ----------------------------------------------------------------
+// # Enter zero to allow all armor
+// # Enter one to allow both light and medium armor (Default)
+// # Enter two to allow only light armor 
+
+// WARNING: Arena is intended to be a primarily light armor (and sometimes
+//          medium) gametype. Most of the maps are designed with this in
+//          mind. If you enable heavy armor be sure you only select maps 
+//          which are not easily camped or spammed, otherwise your server
+//          will probably suck pretty horribly.
+
+$Arena::Pref::RestrictArmor = 1;
+
+
+// # Spawn with Energy Pack
+// # Causes players to start every round already equipped with an energy pack
+// # ----------------------------------------------------------------
+// # Enter false to disable (default)
+// # Enter true to enable
+
+$Arena::Pref::SpawnWithEnergyPack = false;
+
+
+// # Ban Laser Rifle
+// # Prevents players from buying the laser rifle at inventory stations
+// # ----------------------------------------------------------------
+// # Enter false to disable (default)
+// # Enter true to enable
+
+$Arena::Pref::BanLaserRifle = false;
+
+
+// # Ban Cloak Pack
+// # Prevents players from buying the cloak pack at inventory stations
+// # ----------------------------------------------------------------
+// # Enter false to disable
+// # Enter true to enable (default)
+
+$Arena::Pref::BanCloakPack = true;
+
+
+// # Laser Damage Reduction
+// # Reduce laser rifle damage by 40% (in FFA mode only)
+// # ----------------------------------------------------------------
+// # Enter false to disable
+// # Enter true to enable (default)
+
+$Arena::Pref::LaserDamageReduction = true;
+
+
+
+
+// # ---------------------------------------------------------------- //
+// # SECTION THREE - GENERAL SERVER SETTINGS
+
+
+// # Message of The Day
+// # String displayed to players as they enter the game
+// # ----------------------------------------------------------------
+// # $Arena::Pref::MOTD - The message you want to display (use \n for newlines)
+// # $Arena::Pref::MOTDLines - Number of lines in the message (1-3)
+// # $Arena::Pref::MOTDTime - Time, in seconds, that the MOTD is displayed
+// # ----------------------------------------------------------------
+// # To disable the MOTD set the message to "" (empty string)
+
+// WARNING: If you're using some admin mod or other code that presents
+//          a MOTD be sure to disable one or the other, otherwise they'll
+//          interfere with each other.
+
+$Arena::Pref::MOTD = "Welcome to Tribes 2 Arena\nThis server is running Arena 1.0 Final\nFor more information see http://www.planettribes.com/t2arena/";
+$Arena::Pref::MOTDLines = 3;
+$Arena::Pref::MOTDTime = 11;
+
