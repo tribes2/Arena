@@ -308,6 +308,10 @@ function DefaultGame::sendGameVoteMenu(%game, %client, %key)
       if ($Host::ServerRules[1] !$= "" )
          messageClient( %client, 'MsgVoteItem', "", %key, 'showServerRules', 'show server rules', "Show Server Rules" );
          
+      if(%client.isSuperAdmin && (Game.class $= "CTFGame" || Game.class $= "SCtFGame" || Game.class $= "LCTFGame")){
+         messageClient( %client, 'MsgVoteItem', "", %key, 'FlagCapLimit', 'FlagCapLimit', "Set Flag Cap Limit" );   
+      }
+      
       if(Game.class $= "ArenaGame" && (%client.isSuperAdmin)){
          messageClient( %client, 'MsgVoteItem', "", %key, 'ForceRoundEnd', 'ForceRoundEnd', "Force Round End" );
          messageClient( %client, 'MsgVoteItem', "", %key, 'SetRoundLimit', 'RoundLimit', "Set Round Limit" );
@@ -872,6 +876,25 @@ function serverCmdStartNewVote(%client, %typeName, %arg1, %arg2, %arg3, %arg4, %
             $voteNextType = 0;
             $voteNextMap = 0;
             $voteNext = 0;
+         }
+         return;
+       case "FlagCapLimit":
+         %client.lockVMenu = 1;
+         if(strpos(strlwr(%arg1),strlwr("FlagCapLimit")) != -1)
+         {
+            %key = %client.k++;
+            for ( %r = 1; %r <= 20; %r++){
+               %msg = %r SPC "Flag Caps";
+               messageClient( %client, 'MsgVoteItem', "", %key, 'FlagCapLimit', %r, %msg, false );
+            }
+            return;
+         }
+          else{
+            if(%arg1 !$= ""){ 
+               %client.lockVMenu = 0; 
+               MissionGroup.CTF_scoreLimit = %arg1;
+               messageAll('MsgAdminForce', "Flag cap limit is now" SPC %arg1); 
+            }
          }
          return;
       case "ForceRoundEnd":
