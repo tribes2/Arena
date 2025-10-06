@@ -1,0 +1,31 @@
+name: Create arena releases upon tag
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write 
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+      # - name: Update Arena::Version to match GitHub tag
+      #   run: |
+      #     VERSION_FILE='scripts/autoexec/dmp2VersionCheck.cs'
+      #     NEW_VERSION="\"${{ github.ref_name }}\""
+      #     sed -i "s/\(\$DMP2::Version = \)[^;]*;/\1${NEW_VERSION};/" "$VERSION_FILE"
+      - name: Build and release a vl2 using the vl2-builder action
+        id: 'release'
+        uses: tribes2/vl2-builder@v1.3
+        with:
+          tag-name: ${{ github.ref_name }}
+          archive-prefix: 'Arena'
+          exclude-patterns: '.git/*, *.zip, *.vl2, .github/*'
+      - name: Report build success for the fun of it
+        run: |
+          echo "Successfully released asset: ${{ steps.release.outputs.asset_name }}"
